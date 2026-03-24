@@ -88,7 +88,7 @@ def format_pro_report(state: dict) -> str:
     )
     sections.append(
         "*Data provided by [Polaris Knowledge API](https://thepolarisreport.com) "
-        "-- verified intelligence from 200+ sources.*"
+        "-- verified intelligence from premium major sources.*"
     )
     sections.append(
         "\n*This is not financial advice. Past performance does not guarantee future results.*"

@@ -145,7 +145,7 @@ Built on [TradingAgents](https://github.com/TauricResearch/TradingAgents) by Tau
 
 ## Powered by Polaris
 
-Built on the [Polaris Knowledge API](https://thepolarisreport.com) -- 891 tickers, 200+ verified sources, free tier available.
+Built on the [Polaris Knowledge API](https://thepolarisreport.com) -- 891 tickers, premium major sources, free tier available.
 
 ## Disclaimer
 
