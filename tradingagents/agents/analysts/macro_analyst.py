@@ -1,4 +1,5 @@
 from langchain_core.messages import HumanMessage, SystemMessage
+from tradingagents.agents.utils.constants import NO_HALLUCINATE
 """
 Macro Analyst — assesses the macroeconomic environment and its implications.
 
@@ -58,7 +59,7 @@ def create_macro_analyst(llm_client):
             "4. Key risks (recession, inflation, geopolitical)\n"
             f"5. How the macro environment specifically affects {ticker}\n"
             "6. Overall macro verdict: FAVORABLE, NEUTRAL, or UNFAVORABLE for this trade\n\n"
-            "Be specific with numbers. Reference the data provided."
+            "Be specific with numbers. Reference the data provided.\n\n" + NO_HALLUCINATE
         )
 
         messages = [SystemMessage(content=system_prompt), HumanMessage(content=f"Analyze {ticker} now.")]

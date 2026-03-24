@@ -9,6 +9,7 @@ inconclusive.
 """
 
 from langchain_core.messages import HumanMessage, SystemMessage
+from tradingagents.agents.utils.constants import NO_HALLUCINATE
 
 
 def create_fact_checker(llm_client):
@@ -54,7 +55,7 @@ def create_fact_checker(llm_client):
             "2. NVIDIA launched a security platform with CrowdStrike and Palo Alto Networks\n"
             "3. Micron CEO reported inability to meet memory demand\n"
             "4. NVIDIA revenue grew 73% year-over-year to $68 billion\n"
-            "5. AWS announced partnership with Cerebras for AI chips"
+            "5. AWS announced partnership with Cerebras for AI chips\n\n" + NO_HALLUCINATE
         )
 
         messages = [SystemMessage(content=extract_prompt), HumanMessage(content=f"Extract verifiable claims about {ticker}.")]

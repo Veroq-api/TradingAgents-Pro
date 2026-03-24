@@ -1,4 +1,3 @@
-from langchain_core.messages import HumanMessage, SystemMessage
 """
 Contradiction Detector — scans all reports for conflicting facts.
 
@@ -10,12 +9,15 @@ Runs AFTER the Forecast Agent and BEFORE the Research Manager, so the manager
 can weigh data-consistency when making the final recommendation.
 """
 
+from langchain_core.messages import HumanMessage, SystemMessage
+from tradingagents.agents.utils.constants import NO_HALLUCINATE
+
 
 def create_contradiction_detector(llm_client):
-    """Create a Contradiction Detector node that finds conflicting facts.
+    """Create a Contradiction Detector node.
 
     Args:
-        llm_client: LangChain-compatible LLM used for contradiction analysis.
+        llm_client: LangChain-compatible LLM used for analysis.
 
     Returns:
         A LangGraph node function that writes to state["contradiction_report"].
@@ -52,13 +54,18 @@ def create_contradiction_detector(llm_client):
             "or MINOR (cosmetic)\n\n"
             "If no contradictions are found, state that clearly.\n\n"
             "Also flag any claims that appear in only one source with no "
-            "corroboration -- these are unverified single-source claims and "
+            "corroboration — these are unverified single-source claims and "
             "should be noted.\n\n"
-            "End with a summary: number of contradictions found, number critical, "
-            "and overall data consistency assessment (HIGH/MEDIUM/LOW)."
+            "End with a summary: number of contradictions found, number "
+            "critical, and overall data consistency assessment "
+            "(HIGH/MEDIUM/LOW).\n\n"
+            + NO_HALLUCINATE
         )
 
-        messages = [SystemMessage(content=system_prompt), HumanMessage(content=f"Analyze {ticker} now.")]
+        messages = [
+            SystemMessage(content=system_prompt),
+            HumanMessage(content=f"Analyze {ticker} now."),
+        ]
         response = llm_client.invoke(messages)
 
         return {"contradiction_report": response.content}

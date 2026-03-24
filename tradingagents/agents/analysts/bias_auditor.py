@@ -1,4 +1,5 @@
 from langchain_core.messages import HumanMessage, SystemMessage
+from tradingagents.agents.utils.constants import NO_HALLUCINATE
 """
 Bias Auditor — analyzes source distribution and framing across all briefs.
 
@@ -39,7 +40,7 @@ def create_bias_auditor(llm_client):
             "4. Potential blind spots (perspectives not represented)\n"
             "5. Overall bias assessment: BALANCED, SLIGHT SKEW, or SIGNIFICANT SKEW\n"
             "6. Recommendation: any additional sources that should be consulted\n\n"
-            "Be objective and specific. Reference actual sources from the data."
+            "Be objective and specific. Reference actual sources from the data.\n\n" + NO_HALLUCINATE
         )
 
         messages = [SystemMessage(content=system_prompt), HumanMessage(content=f"Analyze {ticker} now.")]

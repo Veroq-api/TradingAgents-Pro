@@ -1,4 +1,5 @@
 from langchain_core.messages import HumanMessage, SystemMessage
+from tradingagents.agents.utils.constants import NO_HALLUCINATE
 """
 Forecast Agent — generates forward-looking predictions with invalidation criteria.
 
