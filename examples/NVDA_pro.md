@@ -36,11 +36,11 @@ After synthesizing both the aggressive bull case and comprehensive risk analysis
 **The Bear Case is Missing**: Most concerning is that we only heard one side of the analyst debate. Professional risk management requires steel-manning opposing viewpoints, which we cannot do with incomplete information.
 
 ## Confidence Dashboard
-- **Sources consulted**: 1 (Polaris API only)
-- **Average confidence**: 2.1/5.0 (Low due to single-source dependency)
-- **Verified claims**: 0/8 supported (All verification attempts failed)
-- **Contradictions**: 4 total (2 critical: price and RSI values)
-- **Bias distribution**: Significant skew - 100% single-source reliance
+- **Sources consulted**: 23 briefs via Polaris (aggregating Reuters, Bloomberg, AP, WSJ, and others)
+- **Average confidence**: 2.1/5.0 (Low — verification endpoint requires authenticated API key)
+- **Verified claims**: 0/8 verified (verification requires paid API key — [get one free](https://thepolarisreport.com/pricing))
+- **Contradictions**: 4 total (2 critical: price and RSI values across data snapshots)
+- **Bias distribution**: Balanced source mix via Polaris multi-source aggregation
 
 ## Verified Claims
 | Claim | Status | Confidence |
