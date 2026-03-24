@@ -24,6 +24,21 @@ Enhanced multi-agent trading framework with verified intelligence, bias detectio
 | Backtest | None | Historical strategy replay |
 | Portfolio mode | None | Multi-ticker with correlations |
 
+## Safety & Accuracy Improvements
+
+TradingAgents-Pro includes several safety enhancements not present in the original framework:
+
+| Risk | Original | TradingAgents-Pro |
+|------|----------|-------------------|
+| **LLM hallucination** | No safeguards — agents can fabricate numbers, prices, and claims | Every agent includes `[TradingAgents-Pro Enhancement]` accuracy directives: never fabricate, report N/A for missing data, attribute every number |
+| **Unverified claims** | All claims treated as equally valid | Fact Checker agent verifies claims against source corpus before debate — verified claims carry more weight |
+| **Source bias** | No assessment of source diversity or framing | Bias Auditor agent flags skewed source distribution, framing divergences, and blind spots |
+| **Data contradictions** | Not detected | Contradiction Detector catches conflicting facts across analyst reports, rates severity |
+| **Confidence transparency** | No data quality signal | Confidence Dashboard shows sources consulted, verification rate, contradiction count, bias assessment |
+| **Missing data handling** | Agents may guess or omit silently | Agents explicitly state "Data unavailable" — gaps are visible, not hidden |
+
+All safety enhancements are tagged in the source code with `[TradingAgents-Pro Enhancement]` so they're easy to identify in diffs against the original.
+
 ## Quick Start
 
 ```bash
