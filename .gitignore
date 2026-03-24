@@ -219,3 +219,6 @@ __marimo__/
 **/data_cache/
 eval_results/
 results/
+.venv/
+eval_results/
+results/
