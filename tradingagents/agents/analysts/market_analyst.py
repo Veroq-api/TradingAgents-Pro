@@ -1,4 +1,5 @@
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.messages import SystemMessage
 import time
 import json
 from tradingagents.agents.utils.agent_utils import (
@@ -6,6 +7,7 @@ from tradingagents.agents.utils.agent_utils import (
     get_indicators,
     get_stock_data,
 )
+from tradingagents.agents.utils.polaris_tools import get_technicals
 from tradingagents.dataflows.config import get_config
 
 
@@ -18,10 +20,13 @@ def create_market_analyst(llm):
         tools = [
             get_stock_data,
             get_indicators,
+            get_technicals,
         ]
 
         system_message = (
-            """You are a trading assistant tasked with analyzing financial markets. Your role is to select the **most relevant indicators** for a given market condition or trading strategy from the following list. The goal is to choose up to **8 indicators** that provide complementary insights without redundancy. Categories and each category's indicators are:
+            """You are a trading assistant tasked with analyzing financial markets. You have access to a pre-built verified context package with technical indicators, composite trading signals, and sector analysis. Reference the confidence scores and signal summaries in your analysis. When citing data, note the confidence level.
+
+Your role is to select the **most relevant indicators** for a given market condition or trading strategy from the following list. The goal is to choose up to **8 indicators** that provide complementary insights without redundancy. Categories and each category's indicators are:
 
 Moving Averages:
 - close_50_sma: 50 SMA: A medium-term trend indicator. Usage: Identify trend direction and serve as dynamic support/resistance. Tips: It lags price; combine with faster indicators for timely signals.
@@ -73,7 +78,15 @@ Volume-Based Indicators:
 
         chain = prompt | llm.bind_tools(tools)
 
-        result = chain.invoke(state["messages"])
+        # Prepend verified context from the Context Builder if available
+        messages = list(state["messages"])
+        context = state.get("verified_context", "")
+        if context:
+            messages = [
+                SystemMessage(content=f"VERIFIED CONTEXT (pre-fetched from Polaris Knowledge API):\n\n{context}\n\nUse this as your primary data source. You may also use tools for additional detail.")
+            ] + messages
+
+        result = chain.invoke(messages)
 
         report = ""
 

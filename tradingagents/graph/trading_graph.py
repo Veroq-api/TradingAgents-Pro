@@ -33,6 +33,15 @@ from tradingagents.agents.utils.agent_utils import (
     get_global_news
 )
 
+# Import Polaris-exclusive tools
+from tradingagents.agents.utils.polaris_tools import (
+    get_technicals,
+    get_sentiment_score,
+    get_sector_analysis,
+    get_news_impact,
+    get_sec_filings,
+)
+
 from .conditional_logic import ConditionalLogic
 from .setup import GraphSetup
 from .propagation import Propagator
@@ -164,12 +173,16 @@ class TradingAgentsGraph:
                     get_stock_data,
                     # Technical indicators
                     get_indicators,
+                    # Polaris-exclusive: full technicals with signal summary
+                    get_technicals,
                 ]
             ),
             "social": ToolNode(
                 [
                     # News tools for social media analysis
                     get_news,
+                    # Polaris-exclusive: composite sentiment signal
+                    get_sentiment_score,
                 ]
             ),
             "news": ToolNode(
@@ -178,6 +191,8 @@ class TradingAgentsGraph:
                     get_news,
                     get_global_news,
                     get_insider_transactions,
+                    # Polaris-exclusive: news-to-price impact analysis
+                    get_news_impact,
                 ]
             ),
             "fundamentals": ToolNode(
@@ -187,6 +202,9 @@ class TradingAgentsGraph:
                     get_balance_sheet,
                     get_cashflow,
                     get_income_statement,
+                    # Polaris-exclusive: SEC filings and sector peer comparison
+                    get_sec_filings,
+                    get_sector_analysis,
                 ]
             ),
         }
@@ -231,6 +249,7 @@ class TradingAgentsGraph:
         self.log_states_dict[str(trade_date)] = {
             "company_of_interest": final_state["company_of_interest"],
             "trade_date": final_state["trade_date"],
+            "verified_context": final_state.get("verified_context", ""),
             "market_report": final_state["market_report"],
             "sentiment_report": final_state["sentiment_report"],
             "news_report": final_state["news_report"],

@@ -53,6 +53,9 @@ class AgentState(MessagesState):
 
     sender: Annotated[str, "Agent that sent this message"]
 
+    # Phase 2: Verified context from Context Builder (pre-fetched Polaris data)
+    verified_context: Annotated[str, "Shared context package built by the Context Builder from Polaris"]
+
     # research step
     market_report: Annotated[str, "Report from the Market Analyst"]
     sentiment_report: Annotated[str, "Report from the Social Media Analyst"]
@@ -60,6 +63,13 @@ class AgentState(MessagesState):
         str, "Report from the News Researcher of current world affairs"
     ]
     fundamentals_report: Annotated[str, "Report from the Fundamentals Researcher"]
+
+    # Phase 3 placeholders: advanced agent reports
+    macro_report: Annotated[str, "Report from the Macro Analyst"]
+    fact_check_report: Annotated[str, "Report from the Fact Checker"]
+    bias_report: Annotated[str, "Report from the Bias Auditor"]
+    forecast_report: Annotated[str, "Report from the Forecast Agent"]
+    contradiction_report: Annotated[str, "Report from the Contradiction Detector"]
 
     # researcher team discussion step
     investment_debate_state: Annotated[

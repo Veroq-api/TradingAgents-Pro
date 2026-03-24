@@ -105,8 +105,14 @@ class GraphSetup:
             self.deep_thinking_llm, self.portfolio_manager_memory
         )
 
+        # Create the Context Builder node (runs first, no LLM)
+        context_builder_node = create_context_builder()
+
         # Create workflow
         workflow = StateGraph(AgentState)
+
+        # Add Context Builder as the first node
+        workflow.add_node("Context Builder", context_builder_node)
 
         # Add analyst nodes to the graph
         for analyst_type, node in analyst_nodes.items():
@@ -127,9 +133,10 @@ class GraphSetup:
         workflow.add_node("Portfolio Manager", portfolio_manager_node)
 
         # Define edges
-        # Start with the first analyst
+        # Start with Context Builder, then route to first analyst
         first_analyst = selected_analysts[0]
-        workflow.add_edge(START, f"{first_analyst.capitalize()} Analyst")
+        workflow.add_edge(START, "Context Builder")
+        workflow.add_edge("Context Builder", f"{first_analyst.capitalize()} Analyst")
 
         # Connect analysts in sequence
         for i, analyst_type in enumerate(selected_analysts):
