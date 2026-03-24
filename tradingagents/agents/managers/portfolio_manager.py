@@ -97,7 +97,10 @@ If any of these reports are empty or unavailable, note "Data not available" for 
 
 ---
 
-Be decisive and ground every conclusion in specific evidence from the analysts."""
+Be decisive and ground every conclusion in specific evidence from the analysts.
+
+# [TradingAgents-Pro Enhancement] Accuracy Safeguard (not present in original TradingAgents)
+CRITICAL: Only reference data explicitly provided to you. NEVER fabricate numbers, prices, percentages, dates, or claims. If data is missing, state "Data unavailable" — do not guess. Accuracy over completeness. Attribute every number to its source."""
 
         response = llm.invoke(prompt)
 

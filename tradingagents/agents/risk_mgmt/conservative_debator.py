@@ -1,3 +1,4 @@
+# [TradingAgents-Pro Enhancement] This agent includes accuracy safeguards not present in original TradingAgents.
 from langchain_core.messages import AIMessage
 import time
 import json

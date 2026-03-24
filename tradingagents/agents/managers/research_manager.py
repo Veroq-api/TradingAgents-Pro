@@ -1,3 +1,4 @@
+# [TradingAgents-Pro Enhancement] This agent includes accuracy safeguards not present in original TradingAgents.
 import time
 import json
 

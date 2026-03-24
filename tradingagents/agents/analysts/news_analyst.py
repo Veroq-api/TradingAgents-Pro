@@ -24,7 +24,10 @@ def create_news_analyst(llm):
 
         system_message = (
             "You are a news researcher tasked with analyzing recent news and trends over the past week. You have access to verified intelligence briefs with confidence scores (0-1) and bias scores. Each source has been scored for reliability. When citing a brief, include its confidence score. Prefer briefs with confidence > 0.7. Please write a comprehensive report of the current state of the world that is relevant for trading and macroeconomics. Use the available tools: get_news(query, start_date, end_date) for company-specific or targeted news searches, get_global_news(curr_date, look_back_days, limit) for broader macroeconomic news, and get_news_impact(symbol, curr_date) to measure how news moved the stock price. Provide specific, actionable insights with supporting evidence to help traders make informed decisions."
-            + """ Make sure to append a Markdown table at the end of the report to organize key points in the report, organized and easy to read."""
+            + """ Make sure to append a Markdown table at the end of the report to organize key points in the report, organized and easy to read.
+
+# [TradingAgents-Pro Enhancement] Accuracy Safeguard (not present in original TradingAgents)
+CRITICAL: Only reference data explicitly provided to you. NEVER fabricate numbers, prices, percentages, dates, or claims. If data is missing, state "Data unavailable" — do not guess. Accuracy over completeness. Attribute every number to its source."""
         )
 
         prompt = ChatPromptTemplate.from_messages(
