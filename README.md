@@ -6,7 +6,7 @@ Enhanced multi-agent trading framework with verified intelligence, bias detectio
 
 ## Or Just /ask Polaris
 
-Don't need the full 15-agent pipeline? Get instant answers:
+Don't need the full 18-agent pipeline? Get instant answers:
 
 ```python
 from polaris_news import Agent
@@ -23,7 +23,7 @@ One line. Complete analysis. [Get a free API key](https://thepolarisreport.com/p
 
 | Feature | TradingAgents | TradingAgents-Pro |
 |---------|--------------|-------------------|
-| Agents | 9 | 15 |
+| Agents | 9 | 18 |
 | Data quality signal | None | Every source scored 0-1 |
 | Fact checking | None | Claims verified before debate |
 | Bias detection | None | Source distribution + framing analysis |
@@ -75,7 +75,7 @@ python run.py NVDA
 ## Usage
 
 ```bash
-# Full 15-agent analysis
+# Full 18-agent analysis
 python run.py NVDA
 
 # Quick mode — skip debate, ~30 seconds
