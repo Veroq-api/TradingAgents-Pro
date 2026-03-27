@@ -2,7 +2,7 @@
 
 Enhanced multi-agent trading framework with verified intelligence, bias detection, and forward-looking predictions. **Built with [Polaris](https://thepolarisreport.com).**
 
-> 15 AI agents. 20 technical indicators. Every claim fact-checked. Every source bias-scored. Every prediction comes with invalidation criteria.
+> 18 AI agents. 20 technical indicators. Every claim fact-checked. Every source bias-scored. Every prediction comes with invalidation criteria.
 
 ## Or Just /ask Polaris
 
