@@ -225,7 +225,7 @@ def _save_report(ticker: str, date: str, report: str) -> str:
 # ---------------------------------------------------------------------------
 
 def mode_standard(args) -> None:
-    """Standard mode: full 15-agent pipeline on a single ticker."""
+    """Standard mode: full 18-agent pipeline on a single ticker."""
     ticker = args.ticker.upper()
     date = args.date or _today()
     config = _build_config(args)
@@ -690,7 +690,7 @@ def build_parser() -> argparse.ArgumentParser:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python run.py NVDA                              Full 15-agent analysis
+  python run.py NVDA                              Full 18-agent analysis
   python run.py NVDA --quick                      Skip debate, fast verdict
   python run.py --compare NVDA AAPL TSLA          Compare multiple tickers
   python run.py --screen "oversold tech stocks"   NLP screener -> analysis
