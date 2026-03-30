@@ -1,5 +1,9 @@
 # TradingAgents-Pro
 
+[![License](https://img.shields.io/badge/license-MIT-2EE89A)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.9+-2EE89A)](https://python.org)
+[![VEROQ](https://img.shields.io/badge/powered%20by-VEROQ-2EE89A)](https://veroq.ai)
+
 Enhanced multi-agent trading framework with verified intelligence, bias detection, and forward-looking predictions. **Built with [Polaris](https://thepolarisreport.com).**
 
 > 18 AI agents. 20 technical indicators. Every claim fact-checked. Every source bias-scored. Every prediction comes with invalidation criteria.
